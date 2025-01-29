@@ -19,7 +19,7 @@ kind create cluster --name kubernetes-software-development
 Prueba que fue bien
 [source,shell]
 ----
-kubecolor get pods
+kubectl get pods
 ----
 
 Y el resultado deberá ser `No resources found in default namespace`
@@ -33,7 +33,7 @@ kubectl apply -f crd-ciudades.yaml
 == 3. Desplegar un Custom Resources
 [source,shell]
 ----
-kubectl apply -f custom-resources/cr-oviedo.yaml
+kubectl apply -f custom-resources/oviedo.yaml
 # Check the custom resource was deployed
 kubectl get ciudades
 # Describe the custom resource with the output in JSON
@@ -50,4 +50,10 @@ kubectl apply -f custom-resources/gijon.yaml
 kubectl apply -f custom-resources/oviedo.yaml
 kubectl apply -f custom-resources/santibanes-de-murias.yaml
 kubectl get ciudades
+----
+
+== 5. Arrancar aplicación Java
+[source,shell]
+----
+./gradlew run
 ----
