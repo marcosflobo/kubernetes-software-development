@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    tags.datadoghq.com/service: un-servicio-del-la-leche
+    tags.datadoghq.com/version: 6.6.6
+  name: un-servicio-del-la-leche
+  namespace: asturias-oviedo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: un-servicio-del-la-leche
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+      - env:
+        - name: SERVER_PORT
+          value: "8080"
+        - name: NXCONFIGURATIONS_FOLDER
+          value: /nxconfigurations
+        - name: POLICY_SERVICE_HOST
+          value: http://policy-service.asturias-oviedo.svc.cluster.local
+        image: 672819064798.dkr.ecr.eu-west-1.amazonaws.com/un-servicio-del-la-leche:6.6.6
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: micronaut-port
+            scheme: HTTP
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        name: un-servicio-del-la-leche
+        ports:
+        - containerPort: 8080
+          name: micronaut-port
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health
+            port: micronaut-port
+            scheme: HTTP
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources:
+          limits:
+            ephemeral-storage: 1Gi
+            memory: 1Gi
+          requests:
+            cpu: "1"
+            ephemeral-storage: 1Gi
+            memory: 1Gi
+        volumeMounts:
+        - mountPath: /nxconfigurations
+          name: nxconfigurations-volume
+          readOnly: true
+      restartPolicy: Always
+      serviceAccount: un-servicio-del-la-leche-sa
+      volumes:
+      - name: portal-keys
+        secret:
+          defaultMode: 420
+          optional: true
+          secretName: portal-secrets
+      - configMap:
+          defaultMode: 420
+          name: un-servicio-del-la-leche-ft-configurations
+          optional: true
+        name: nxconfigurations-volume
+
