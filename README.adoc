@@ -1,0 +1,34 @@
+= Documentacion
+
+== Introduccion
+Este repositorio contine los recursos para desplegar un Custom Resource Definintion y sus correspondientes Custom Resources.
+
+El objetivo es demostrar el uso de la API extensible de Kubernetes
+
+== Desplegar CRD
+[source,shell]
+----
+kubectl apply -f crd-ciudades.yaml
+----
+
+== Desplegar un Custom Resources
+[source,shell]
+----
+kubectl apply -f custom-resources/cr-oviedo.yaml
+# Check the custom resource was deployed
+kubectl get ciudades
+# Describe the custom resource with the output in JSON
+kubectl get ciudades oviedo.asturias -o json
+# Remove the custom resource
+kubectl delete ciudades oviedo.asturias
+----
+
+== Desplegar todos los Custom Resources en el directorio
+[source,shell]
+----
+kubectl apply -f custom-resources/aviles.yaml
+kubectl apply -f custom-resources/gijon.yaml
+kubectl apply -f custom-resources/oviedo.yaml
+kubectl apply -f custom-resources/santibanes-de-murias.yaml
+kubectl get ciudades
+----
