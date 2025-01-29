@@ -5,13 +5,31 @@ Este repositorio contine los recursos para desplegar un Custom Resource Definint
 
 El objetivo es demostrar el uso de la API extensible de Kubernetes
 
-== Desplegar CRD
+== 1. Instalar `kubectl`, KIND y levantar un cluster nuevo
+`kubectl` es la aplicación en línea de comandos para utilizar un cluster de Kubernetes. Aquí tenéis las instrucciones de instalación https://kubernetes.io/docs/tasks/tools/
+
+KIND es Kubernetes In Docker y aquí tenéis la guia de instalación https://kind.sigs.k8s.io/docs/user/quick-start/#installation
+
+Para levantar un cluster
+[source,shell]
+----
+kind create cluster --name kubernetes-software-development
+----
+
+Prueba que fue bien
+[source,shell]
+----
+kubecolor get pods
+---
+Y el resultado deberá ser `No resources found in default namespace`
+
+== 2. Desplegar CRD
 [source,shell]
 ----
 kubectl apply -f crd-ciudades.yaml
 ----
 
-== Desplegar un Custom Resources
+== 3. Desplegar un Custom Resources
 [source,shell]
 ----
 kubectl apply -f custom-resources/cr-oviedo.yaml
