@@ -1,0 +1,9 @@
+apiVersion: asturias.com/v1
+kind: Ciudad
+metadata:
+  name: santibanesdemurias.asturias
+spec:
+  nombre: Santibanes de Murias
+  poblacion: 224005
+  yeciudad: "que va oh!"
+  urlLogo: https://example.com/logos/santibanes.png

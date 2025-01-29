@@ -1,0 +1,54 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: ciudades.asturias.com
+spec:
+  group: asturias.com
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            # Fields to validate are the following:
+            metadata: # 'metadata' should be an object
+              type: object
+              properties: # With the following field 'name'
+                name:
+                  type: string # Of type 'string'
+                  pattern: '^[a-z]+[a-z0-9]*\.[a-z0-9]+$' # allows only 'word.word' names
+            spec: # Root field 'spec'
+              type: object # It is an object
+              properties: # And has the following field
+                nombre:
+                  type: string # 'nombre' is a string
+                poblacion:
+                  type: integer # 'poblacion' is an integer
+                yeciudad:
+                  type: string
+                  enum:
+                    - "si oh!"
+                urlLogo:
+                  type: string # 'urlLogo' is a string
+              required: # The following fields are required
+                - nombre
+                - yeciudad
+      # Enables to add new column when listing instances `kubectl get nxcfg`
+      additionalPrinterColumns:
+        - name: Nombre
+          type: string
+          description: Nombre de ciudad
+          jsonPath: .spec.nombre
+        - name: Poblacion
+          type: integer
+          description: Poblacion de la ciudad
+          jsonPath: .spec.poblacion
+  scope: Namespaced
+  names:
+    plural: ciudades
+    singular: ciudad
+    shortNames:
+      - cdad
+    kind: Ciudad

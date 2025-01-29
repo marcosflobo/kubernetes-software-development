@@ -1,0 +1,9 @@
+apiVersion: asturias.com/v1
+kind: Ciudad
+metadata:
+  name: aviles.asturias
+spec:
+  nombre: Aviles
+  poblacion: 83976
+  yeciudad: "si oh!"
+  urlLogo: https://example.com/logos/aviles.png

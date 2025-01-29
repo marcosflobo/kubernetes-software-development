@@ -1,0 +1,9 @@
+apiVersion: asturias.com/v1
+kind: Ciudad
+metadata:
+  name: gijon.asturias
+spec:
+  nombre: Gijon
+  poblacion: 271780
+  yeciudad: "si oh!"
+  urlLogo: https://example.com/logos/gijon.png

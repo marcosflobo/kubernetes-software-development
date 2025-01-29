@@ -1,0 +1,9 @@
+apiVersion: asturias.com/v1
+kind: Ciudad
+metadata:
+  name: oviedo.asturias
+spec:
+  nombre: Oviedo
+  poblacion: 224005
+  yeciudad: "si oh!"
+  urlLogo: https://example.com/logos/oviedo.png
