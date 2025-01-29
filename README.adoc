@@ -20,7 +20,8 @@ Prueba que fue bien
 [source,shell]
 ----
 kubecolor get pods
----
+----
+
 Y el resultado deberá ser `No resources found in default namespace`
 
 == 2. Desplegar CRD
@@ -41,7 +42,7 @@ kubectl get ciudades oviedo.asturias -o json
 kubectl delete ciudades oviedo.asturias
 ----
 
-== Desplegar todos los Custom Resources en el directorio
+== 4. Desplegar todos los Custom Resources en el directorio
 [source,shell]
 ----
 kubectl apply -f custom-resources/aviles.yaml
