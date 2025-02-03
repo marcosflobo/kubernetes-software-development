@@ -5,6 +5,9 @@ Este repositorio contine los recursos para desplegar un Custom Resource Definint
 
 El objetivo es demostrar el uso de la API extensible de Kubernetes
 
+== Slides
+Download https://github.com/marcosflobo/kubernetes-software-development/blob/main/20250131%20-%20Kubernetes%20para%20el%20desarrollo%20de%20software.pdf
+
 == 1. Instalar `kubectl`, KIND y levantar un cluster nuevo
 `kubectl` es la aplicación en línea de comandos para utilizar un cluster de Kubernetes. Aquí tenéis las instrucciones de instalación https://kubernetes.io/docs/tasks/tools/
 
