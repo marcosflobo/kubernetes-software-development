@@ -1,0 +1,9 @@
+apiVersion: asturias.com/v1
+kind: Ciudad
+metadata:
+  name: poladelena.asturias
+spec:
+  nombre: Pola de Lena
+  poblacion: 127769
+  yeciudad: "que va oh!"
+  urlLogo: https://example.com/logos/poladelena.png
